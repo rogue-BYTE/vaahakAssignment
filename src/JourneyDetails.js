@@ -70,6 +70,7 @@ export const JourneyDetails = ({ formData, setFormData, nextStep }) => {
           console.log(values)
           nextStep();
         }}
+        validationSchema={validationSchema}
       >
         <Form className={classes.form}>
           <div>
