@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { JourneyDetails } from './JourneyDetails';
 import { PersonalDetails } from './PersonalDetails';
 import { Rate } from './Rate';
-import { OTP } from '../OTP';
+import { OTP } from './OTP';
 import { Summary } from './Summary';
 
 export const UserForm = () => {
@@ -39,6 +39,25 @@ export const UserForm = () => {
           setFormData={setFormData}
           nextStep={nextStep}
           prevStep={prevStep}
+        />
+      );
+    case 3:
+      return (
+        <PersonalDetails
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+          prevStep={prevStep}
+        />
+      );
+    case 4:
+      return (
+        <OTP
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+          prevStep={prevStep}
+          firstStep={firstStep}
         />
       );
     default:

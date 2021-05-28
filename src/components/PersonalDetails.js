@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
-import { Formik, Form } from 'formik';
+import React, {useState} from 'react';
+//import PropTypes from 'prop-types';
+import {Formik, Form, Field} from 'formik';
 import Header from './Header';
-import { makeStyles } from '@material-ui/core/styles';
-import EditIcon from '@material-ui/icons/Edit';
 import * as Yup from 'yup';
-import OTPfield from './FormsUI/OTPField';
+import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
+import '../App.css'
+import Textfield from './FormsUI/Textfield';
+import EditIcon from '@material-ui/icons/Edit';
+import RateField from './FormsUI/RateField';
 
 const useStyles = makeStyles(theme => ({
   form: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    fontFamily: 'Trebuchet MS',
+    alignItems: 'center'
   },
   field: {
-    margin: theme.spacing(1),
-    width: 300
+    margin: '30px 10px 0px 10px',
+    width: 350
   },
   button: {
     backgroundColor: 'blue',
@@ -30,13 +33,19 @@ const useStyles = makeStyles(theme => ({
     fontSize: 15
   },
   rateField: {
-    height: 50,
-    fontSize: 30,
+    padding: '10px 10px 10px 10px',
+    margin: 10,
+    width: 150,
+    height: 75,
+    fontSize: 50,
     textAlign: 'center',
     border: 'none'
   },
+  labelTag: {
+    fontSize: 50
+  },
   details: {
-    borderBottom: '0.1px solid grey',
+    borderBottom: '0.1px solid #eaeaea',
     width: 350,
     padding: '30px 10px 30px 10px'
   },
@@ -50,58 +59,47 @@ const useStyles = makeStyles(theme => ({
   detailsContent: {
     fontSize: 15,
     display: 'flex',
-    fontStyle: 'bold',
     justifyContent: 'space-between'
-  },
-  otpField: {
-    padding: '10px 10px 10px 10px',
-    margin: '10px 10px 10px 10px',
-    height: 20
   }
 }));
 
 const validationSchema = Yup.object({
-  otp: Yup
+  bidPrice: Yup.number()
+    .integer()
+    .required('Rate is required'),
+  number: Yup.number()
+  .integer()
+  .required('Please enter a valid mobile number'),
+  name: Yup
     .string()
-    .matches(/^[0-9]+$/, "Must be only digits")
-    .min(4, 'Must be exactly 4 digits')
-    .max(4, 'Must be exactly 4 digits')
+    .required("Enter your name")
 });
-export const OTP = ({
+
+export const PersonalDetails = ({
   formData,
   setFormData,
   nextStep,
-  prevStep,
-  firstStep
+  prevStep
 }) => {
-  const [direction, setDirection] = useState('forward');
+  const [direction, setDirection] = useState('back');
   const classes = useStyles();
-  const [otp, setOtp] = useState('');
+
   return (
     <>
-      <Header title='Verify OTP (3/4 step)' />
+      <Header title='Place your Bid (2/4 step)' />
       <Formik
         initialValues={formData}
         onSubmit={values => {
-          values['otp'] = otp;
           setFormData(values);
-          console.log();
-          if (direction==='first') {
-            firstStep();
-          }
-          else if (direction==='back') {
-            prevStep()
-          }
-          else {
-            nextStep();
-          }
+          console.log(values);
+          direction === 'back' ? prevStep() : nextStep();
         }}
         validationSchema={validationSchema}
       >
         <Form className={classes.form}>
           <div className={classes.details}>
             <div className={classes.detailsTitle}>
-                JOURNEY DETAILS
+              JOURNEY DETAILS
             </div>
             <div className={classes.detailsContent}>
               <div>
@@ -112,45 +110,47 @@ export const OTP = ({
               <div>
                 <button
                   type='submit'
-                  onClick={() => setDirection('first')}
+                  onClick={() => setDirection('back')}
                   className={classes.editButton}
                 >
                   <EditIcon />
                   Edit
-                </button>
+                </button> 
               </div>       
             </div>
           </div>
           <div className={classes.details}>
-            <div className={classes.detailsTitle}>
-                BIDDING DETAILS
+            <div>
+                <label className={classes.labelTag}>
+                  ₹
+                  <RateField className={classes.rateField} name="bidPrice" label="Rate(₹)" placeholder="0"/>
+                </label>
             </div>
-              <div className={classes.detailsContent}>
-                <div>
-                  {formData.number}
-                  <br />
-                  {formData.name}
-                  <br />
-                  {formData.remarks}
-                </div>
-                <div className={classes.rateField}>
-                  ₹{formData.bidPrice}
-                </div>       
-              </div>
+            <div>
+              <label className={classes.field}>
+                <Field type="checkbox" name='rateNegotiable' />
+                Rate Negotiable
+              </label>
             </div>
-          <div className={classes.field}>
-            We have sent an OTP to your mobile number. Please enter it below to submit your bid.
-            {formData.number}
-            <button
-              type='submit'
-              onClick={() => setDirection('back')}
-              className={classes.editButton}
-            >
-              <EditIcon />
-              Edit
-            </button>
           </div>
-          <OTPfield className={classes.otpField} name="otp" label="OTP" setOtp={setOtp}/>
+          <Textfield className={classes.field} name="number" label="Mobile Number*" />
+          <label>
+            <Field type="checkbox" name='getUpdates' />
+            Get updates on Whatsapp
+          </label>
+          <Textfield className={classes.field} name="name" label="Enter your Name*" />
+          <Textfield className={classes.field} name="remarks" label="Remarks(optional)" />
+          <div>
+            <Button
+              type='submit'
+              variant='contained'
+              color='primary'
+              onClick={() => setDirection('forward')}
+              className={classes.button}
+            >
+              Verify via OTP
+            </Button>
+          </div>
         </Form>
       </Formik>
     </>
