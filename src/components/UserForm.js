@@ -32,6 +32,14 @@ export const UserForm = () => {
           nextStep={nextStep}
         />
       );
+    case 2:
+      return (
+        <Rate
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+        />
+      );
     default:
       return <div>Submission Complete</div>;
   }
