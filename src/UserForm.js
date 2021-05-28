@@ -22,4 +22,17 @@ export const UserForm = () => {
   const nextStep = () => setStep(prev => prev + 1);
   const firstStep = () => setStep(1);
   const prevStep = () => setStep(prev => prev - 1);
+
+  switch (step) {
+    case 1:
+      return (
+        <JourneyDetails
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+        />
+      );
+    default:
+      return <div>Submission Complete</div>;
+  }
 };
