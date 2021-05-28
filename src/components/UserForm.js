@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { JourneyDetails } from './JourneyDetails';
 import { PersonalDetails } from './PersonalDetails';
 import { Rate } from './Rate';
-import { OTP } from './OTP';
+import { OTP } from '../OTP';
 import { Summary } from './Summary';
 
 export const UserForm = () => {

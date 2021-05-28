@@ -1,7 +1,7 @@
 import React from 'react';
 import { useField }from 'formik';
 
-const TextfieldWrapper = ({
+const Ratefield = ({
   name,
   ...otherProps
 }) => {
@@ -21,4 +21,4 @@ const TextfieldWrapper = ({
     <input {...configTextField} />
   );
 }
-export default TextfieldWrapper;
+export default Ratefield;
