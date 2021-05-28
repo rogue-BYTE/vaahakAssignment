@@ -53,11 +53,6 @@ const useStyles = makeStyles(theme => ({
     fontStyle: 'bold',
     justifyContent: 'space-between'
   },
-  otpField: {
-    padding: '10px 10px 10px 10px',
-    margin: '10px 10px 10px 10px',
-    height: 20
-  }
 }));
 
 const validationSchema = Yup.object({
