@@ -10,6 +10,58 @@ import Textfield from './FormsUI/TextfieldWrapper';
 import EditIcon from '@material-ui/icons/Edit';
 import RateField from './FormsUI/RateField';
 
+const useStyles = makeStyles(theme => ({
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  field: {
+    margin: '30px 10px 0px 10px',
+    width: 350
+  },
+  button: {
+    backgroundColor: 'blue',
+    color: 'white',
+    margin: theme.spacing(1)
+  },
+  editButton: {
+    backgroundColor: 'white',
+    border: 'none',
+    color: 'blue',
+    fontSize: 15
+  },
+  rateField: {
+    padding: '10px 10px 10px 10px',
+    margin: 10,
+    width: 150,
+    height: 75,
+    fontSize: 50,
+    textAlign: 'center',
+    border: 'none'
+  },
+  labelTag: {
+    fontSize: 50
+  },
+  details: {
+    borderBottom: '0.1px solid #eaeaea',
+    width: 350,
+    padding: '30px 10px 30px 10px'
+  },
+  detailsTitle: {
+    color: 'grey',
+    fontSize: 10,
+    fontStyle: 'italic',
+    textAlign: 'left',
+    padding: '0px 0px 10px 0px'
+  },
+  detailsContent: {
+    fontSize: 15,
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
+}));
 
 export const PersonalDetails = ({
   formData,
