@@ -4,7 +4,7 @@ import Header from './Header';
 import * as Yup from 'yup';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import Textfield from './FormsUI/TextfieldWrapper';
+import Textfield from './FormsUI/Textfield';
 import Select from './FormsUI/Select';
 
 const useStyles = makeStyles(theme => ({
