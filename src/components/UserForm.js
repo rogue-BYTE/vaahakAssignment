@@ -38,6 +38,7 @@ export const UserForm = () => {
           formData={formData}
           setFormData={setFormData}
           nextStep={nextStep}
+          prevStep={prevStep}
         />
       );
     default:
