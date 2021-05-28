@@ -63,6 +63,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const validationSchema = Yup.object({
+  bidPrice: Yup.number()
+    .integer()
+    .required('Rate is required'),
+  number: Yup.number()
+  .integer()
+  .required('Please enter a valid mobile number'),
+  name: Yup
+    .string()
+    .required("Enter your name")
+});
+
 export const PersonalDetails = ({
   formData,
   setFormData,
@@ -82,6 +94,7 @@ export const PersonalDetails = ({
           console.log(values);
           direction === 'back' ? prevStep() : nextStep();
         }}
+        validationSchema={validationSchema}
       >
         <Form className={classes.form}>
           
