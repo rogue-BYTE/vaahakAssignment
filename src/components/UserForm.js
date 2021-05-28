@@ -60,6 +60,15 @@ export const UserForm = () => {
           firstStep={firstStep}
         />
       );
+    case 5:
+      return (
+        <Summary
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+          prevStep={firstStep}
+        />
+      );
     default:
       return <div>Submission Complete</div>;
   }
