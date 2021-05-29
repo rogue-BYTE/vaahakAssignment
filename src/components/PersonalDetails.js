@@ -94,7 +94,7 @@ export const PersonalDetails = ({
           console.log(values);
           direction === 'back' ? prevStep() : nextStep();
         }}
-        validationSchema={validationSchema}
+        validationSchema={direction==='front' ? validationSchema:''}
       >
         <Form className={classes.form}>
           <div className={classes.details}>
