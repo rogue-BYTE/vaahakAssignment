@@ -82,7 +82,7 @@ export const Rate = ({
           setFormData(values);
           direction === 'back' ? prevStep() : nextStep();
         }}
-        validationSchema={validationSchema}
+        validationSchema={direction==='front' ? validationSchema : ''}
       >
         <Form className={classes.form}>
           <div className={classes.details}>
