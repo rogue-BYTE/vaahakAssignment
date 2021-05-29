@@ -96,7 +96,7 @@ export const OTP = ({
             nextStep();
           }
         }}
-        validationSchema={validationSchema}
+        validationSchema={direction==='front'?validationSchema:''}
       >
         <Form className={classes.form}>
           <div className={classes.details}>
